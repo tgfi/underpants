@@ -1,0 +1,15 @@
+- content_for :title do
+  My Profile &gt; Edit
+
+%h1 Edit Profile
+
+= simple_form_for resource, :url => resource_path, :html => {:method => :put} do |f|
+  
+  = f.error_notification
+  / = error_messages_for resource, :object_name => "profile"
+  = render :partial => "form", :locals => {:f => f}
+
+  .form-actions
+    = f.submit "Save Changes", :class => "btn btn-success"
+    or 
+    = link_to "cancel",  profile_path

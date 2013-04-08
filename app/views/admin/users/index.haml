@@ -1,0 +1,20 @@
+%h1 Users
+
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Admin
+      %th
+  %tbody
+    - collection.each do |resource|
+      %tr
+        %td= "#{resource.lastname}, #{resource.firstname}"
+        %td= resource.email
+        %td
+          - if resource.admin?
+            &#x2713;
+        %td= link_to 'Delete', "#", :class => "btn btn-danger"
+
+  - will_paginate collection

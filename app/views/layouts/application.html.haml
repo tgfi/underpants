@@ -1,0 +1,56 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width", :name => "viewport"}
+    %meta{:name => "robots", :content => "noindex"}
+
+    %title 
+      - t = yield :title
+      - if t.present?
+        = t
+        |
+      TGFI Underpants
+
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tag
+    
+  %body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          %button.btn.btn-navbar{:type => "button", :'data-toggle' => "collapse", :'data-target' => ".nav-collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to "Project Name", admin_root_url, :class => "brand"
+          .nav-collapse.collapse
+            %p.navbar-text.pull-right
+              - if current_user.admin?
+                = link_to 'Admin', root_url(:subdomain => "admin"), :class => "navbar-link"  
+                |
+              = link_to 'My Profile', profile_path, :class => "navbar-link"
+              |
+              = link_to 'Logout',  destroy_user_session_url(:subdomain => false), :class => "navbar-link"
+            %ul.nav
+              %li{ :class => controller_name == "users" ? "active" : nil}= link_to "Users", admin_users_path()
+              %li{ :class => controller_name == "accounts" ? "active" : nil}= link_to "Accounts", admin_accounts_path()
+
+    .container-fluid
+      .row-fluid
+        .span9
+          .row-fluid
+            = yield
+        .span3
+          .well.sidebar-nav
+            = yield :sidebar
+      %hr
+      %footer
+        %p.pull-right Site designed by #{link_to 'TGFI', "http://www.tgfi.net/"}.
+        %p &copy; Company #{Date.current.year}
+
+
+    = javascript_include_tag "application"
+    / IE Fix for HTML5 Tags
+    /[if lt IE 9]
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
