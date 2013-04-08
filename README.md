@@ -8,6 +8,8 @@ The core pieces include:
 - Subdomain based Accounts
 - Inherited Resources
 - Twitter Bootstrap using the asset pipeline
+- HAML
+- Coffee Script
 - MySQL
 
 Check out the Gemfile for more info.
