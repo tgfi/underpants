@@ -1,5 +1,8 @@
 - content_for :title do
-  My Profile
+  Accounts &gt; Show
 
-- content_for :main do
-  %h1 My Profile
+%h1= resource.name
+
+= link_to "Edit", edit_resource_path(resource), :class => "btn btn-primary"
+or 
+= link_to "cancel",  collection_path

@@ -1,9 +1,9 @@
 - content_for :title do
-  Accounts &gt; Edit
+  Users &gt; New
 
-%h1 Edit Account
+%h1 New User
 
-= simple_form_for resource, :url => resource_path, :html => {:method => :put} do |f|
+= simple_form_for resource, :url => collection_path do |f|
   
   = f.error_notification
   / = error_messages_for resource, :object_name => "profile"
